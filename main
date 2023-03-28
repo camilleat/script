@@ -1,0 +1,9 @@
+import VolumioWebsocket from "node-red-contrib-volumio/volumio.js";
+const volumio = new VolumioWebsocket("172.20.10.8", 3000);
+
+// URL de la webRadio
+const radioUrl = 'http://icy.unitedradio.it/RMC.mp3';
+
+// Fonction pour lancer la webRadio
+volumio.connect();
+volumio.command('addToQueue', {});
