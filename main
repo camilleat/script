@@ -1,3 +1,6 @@
+
+// --------------------------------Gerer la liste des radios -----------------------------------------(Matys faut que tu mettes ton code la)
+
 import VolumioWebsocket from "node-red-contrib-volumio/volumio.js";
 const volumio = new VolumioWebsocket("172.20.10.8", 3000);
 
