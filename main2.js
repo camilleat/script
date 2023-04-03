@@ -9,37 +9,13 @@ const currentState = pinA.read().then((currentState) => {
   console.log(`Current state of button :${currentState}`);
               });
 
-function handlePinChange(err, value) {
-  if (err) {
-    console.error('Error while reading pin state:', err);
-    return;
-  }
+async function main() {
+  const pinA = new Gpio(17, 'in', 'both');
 
-  console.log(`Current state of pin A: ${value}`);
+  while (true) {
+    const currentState = await pinA.read();
+    console.log(`Current state of button: ${currentState}`);
+  }
 }
 
-// Listen for changes on the pin and trigger the callback function
-pinA.watch(handlePinChange);
-
-
-pinA.watch((err, valueA) => {
-  if (err) {
-    throw err;
-  }
-
-  pinB.read((err, valueB) => {
-    if (err) {
-      throw err;
-    }
-
-    const delta = valueA ^ valueB;
-
-    if (delta & valueB) {
-      position--;
-    } else {
-      position++;
-    }
-
-    console.log(`Encoder position: ${position}`);
-  });
-});
+main().catch(console.error);
