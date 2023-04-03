@@ -1,5 +1,7 @@
 import {Gpio} from 'onoff';
 
+
+async function main() {
 const pinA = new Gpio(18, "in", "both");
 const pinB = new Gpio(23, "in", "both");
 
@@ -9,13 +11,20 @@ const currentState = pinA.read().then((currentState) => {
   console.log(`Current state of button :${currentState}`);
               });
 
-async function main() {
-  const pinA = new Gpio(17, 'in', 'both');
-
-  while (true) {
-    const currentState = await pinA.read();
-    console.log(`Current state of button: ${currentState}`);
+pinA.watch((err, valueA) => {
+  if (err) {
+    throw err;
   }
+  await pinB.read((err, valueB) => {
+    if (err) {
+      throw err;
+    }
+    if (valueA === valueB) {
+      pos = pos++;
+    } else {
+      pos = pos--;
+    }
+    console.log(`Current position: ${pos}`);
+  });
+});
 }
-
-main().catch(console.error);
