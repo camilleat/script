@@ -37,8 +37,8 @@ board.on("ready", () => {
 
   //Creation d'un musicEncoder qui gère la musique (les next et prev)
   const musicEncoder = new Encoder({
-    pinA: "GPIO24", //faudra mettre les bons GPIO
-    pinB: "GPIO25",
+    pinA: "GPIO12",
+    pinB: "GPIO16",
     pulseLength: 1, //en millisecondes
   });
 
