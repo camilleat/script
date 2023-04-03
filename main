@@ -15,7 +15,7 @@ volumio.command('play');
 
 
 // -------------------- gérer les encodeurs -------------------------------------------------------
-const { Board, Encoder } = require("johnny-five"); //on a besoin de johnny-five, c'est ici : http://johnny-five.io
+const { Board, Encoder } = require("johnny-five");
 
 const board = new Board();
 
