@@ -16,8 +16,10 @@ volumio.command('play');
 
 // -------------------- gérer les encodeurs -------------------------------------------------------
 const { Board, Encoder } = require("johnny-five");
-
-const board = new Board();
+const {RaspiIO} = require("raspi-io");
+const board = new Board({
+  io: new RaspiIO()
+});
 
 board.on("ready", () => {
   //Creation d'un volumeEncoder qui gère le volume de la musique
