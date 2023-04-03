@@ -5,9 +5,11 @@ const pinB = new Gpio(23, "in", "both");
 
 let position = 0;
 console.log(`Encoder position: ${position}`);
+while(true){
 const currentState = pinA.read().then((currentState) => {
   console.log(`Current state of button :${currentState}`);
               });
+}
 
 pinA.watch((err, valueA) => {
   if (err) {
