@@ -1,7 +1,7 @@
 const Gpio = require("onoff").Gpio;
 
-const pinA = new Gpio(24, "in", "both");
-const pinB = new Gpio(25, "in", "both");
+const pinA = new Gpio(18, "in", "both");
+const pinB = new Gpio(23, "in", "both");
 
 let position = 0;
 
