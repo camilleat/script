@@ -4,6 +4,7 @@ const pinA = new Gpio(18, "in", "both");
 const pinB = new Gpio(23, "in", "both");
 
 let position = 0;
+console.log(`Encoder position: ${position}`);
 
 pinA.watch((err, valueA) => {
   if (err) {
