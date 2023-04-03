@@ -1,4 +1,4 @@
-const Gpio = require("onoff").Gpio;
+import {Gpio} from 'onoff';
 
 const pinA = new Gpio(18, "in", "both");
 const pinB = new Gpio(23, "in", "both");
