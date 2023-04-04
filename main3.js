@@ -1,6 +1,6 @@
 const Gpio = require('onoff').Gpio;
-const clk = new Gpio(17, 'in', 'both');
-const dt = new Gpio(18, 'in', 'both');
+const clk = new Gpio(18, 'in', 'both');
+const dt = new Gpio(23, 'in', 'both');
 
 let counter = 0;
 let clkLastState = clk.readSync();
