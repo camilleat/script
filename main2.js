@@ -1,36 +1,23 @@
 import { Gpio } from 'onoff';
 
-const pinA = new Gpio(18, 'in', 'both');
-const pinB = new Gpio(23, 'in', 'both');
+const pinA = new Gpio(18, 'in');
+const pinB = new Gpio(23, 'in');
 let counter = 0;
 console.log("hello");
 
-function handleRotation(channel) {
-  if (channel === pinA) {
-    if (pinA.readSync() !== pinB.readSync()) {
-      counter++;
+let counter = 0;
+let pinALastState = pinA.readSync();
+
+while (true) {
+  const pinAState = pinA.readSync();
+  const pinBState = pinB.readSync();
+  if (pinAState !== pinALastState) {
+    if (pinBState !== pinAState) {
+      counter += 1;
     } else {
-      counter--;
+      counter -= 1;
     }
-  } else {
-    if (pinA.readSync() === pinB.readSync()) {
-      counter++;
-    } else {
-      counter--;
-    }
+    console.log(counter);
   }
-
-  console.log('Channel: ' + channel);
-  console.log('Pin A: ' + pinA.readSync());
-  console.log('Pin B: ' + pinB.readSync());
-  console.log('Counter: ' + counter);
+  pinALastState = pinBState;
 }
-
-pinA.watch(handleRotation);
-pinB.watch(handleRotation);
-
-process.on('SIGINT', function () {
-  pinA.unexport();
-  pinB.unexport();
-  process.exit();
-});
